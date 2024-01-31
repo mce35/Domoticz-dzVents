@@ -5,8 +5,8 @@ This repository contains a collection of LUA scripts to use with Domoticz.
 > [!WARNING]
 > These scripts are made available to serve as examples, they are not meant to be used as-is.
 
-| Script             | Function |
-|:------------------:|:---------|
+| Script             | Description |
+|:------------------:|:------------|
 | `alarm.lua`        | Triggers a siren when a door is opened or motion is detected. |
 | `avg_temp.lua`     | Aggregates multiple temperature sensors to a single dummy sensor |
 | `check_alive.lua`  | Checks last seen status of a list of devices. When a threshold is reached, it sends a notification through email. It can be used to check when devices are out of battery. |
