@@ -4,7 +4,7 @@ Script that detects water leaks
 
 local INTERVAL_CHECK = 60           -- delay between leak checks in minutes
 local NB_INTERVALS_NOTIF = 20       -- number of consecutive intervals with consumption to trigger the notification
-local WATER_CONTACT_IDX = 8         -- index of the device for the water sensor
+local WATER_CONTACT_IDX = 362       -- index of the device for the water sensor
 local WATER_TICK_CAPACITY = 0.5     -- number of water liters for each water sensor tick
 local LEAKY_BUCKET_MAX_VALUE = 200  -- leaky bucket burst count allowed (number of liters allowed at once)
 local LEAKY_BUCKET_AVG_LEAK = 0.5   -- leaky bucket average rate allowed (number of liters average allowed per minute)
