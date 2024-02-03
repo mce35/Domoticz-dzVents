@@ -18,7 +18,8 @@ local TIMEOUT_SEC_ROUTER  = 2*60*60   -- timeout in seconds for Zigbee routers
 local TIMEOUT_SEC_LONG    = 6*60*60   -- timeout in seconds for sensors not reporting often
 local TIMEOUT_SEC_TEMP    = 2*60*60   -- timeout in seconds for temp sensors
 local TIMEOUT_SEC_WATER   = 24*60*60  -- timeout in seconds for water meter
-local LOG_LEVEL = domoticz.LOG_DEBUG  -- Can be domoticz.LOG_INFO, domoticz.LOG_MODULE_EXEC_INFO, domoticz.LOG_DEBUG or domoticz.LOG_ERROR
+local TIMEOUT_SEC_SHORT   = 2*60      -- timeout in seconds for devices updated frequently
+local LOG_LEVEL = domoticz.LOG_INFO   -- Can be domoticz.LOG_INFO, domoticz.LOG_MODULE_EXEC_INFO, domoticz.LOG_DEBUG or domoticz.LOG_ERROR
 
 local HTTPCallback = 'CheckLastSeen'
 local Time = require('Time')
@@ -171,6 +172,7 @@ return {
 
             ['68']  = TIMEOUT_SEC_DEFAULT, -- Xiaomi Gateway Lux
             ['17']  = TIMEOUT_SEC_WATER,   -- Water - 1 day
+            ['363'] = TIMEOUT_SEC_SHORT,   -- Arduino analog input 0
             ['4']   = TIMEOUT_SEC_DEFAULT, -- Teleinfo Courant
             ['221'] = TIMEOUT_SEC_DEFAULT, -- Palazzetti - Room Temperature
 
