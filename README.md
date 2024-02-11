@@ -18,3 +18,5 @@ This repository contains a collection of LUA scripts to use with Domoticz.
 | `water_flow.lua`      | Updates a water flow sensor (in L/minute), based on a variable updated by water_meter.lua |
 | `water_meter.lua`     | Measure the water consumption, based on a switch to indicate water consumption |
 | `water_switch.lua`    | Allows to control a water valve controlled by 2 on/off switches (one for direction, one to open/close the valves) and 2 sensors (stop sensors) using a simple on/off switch. |
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?business=VNKNGYUAZQR6A&no_recurring=0&currency_code=EUR)
