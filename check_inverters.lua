@@ -1,6 +1,6 @@
 local LOG_LEVEL = domoticz.LOG_DEBUG -- Can be domoticz.LOG_INFO, domoticz.LOG_MODULE_EXEC_INFO, domoticz.LOG_DEBUG or domoticz.LOG_ERROR
 
-local ALLOWED_PERCENT_DIFF = 0.02 -- Allowed percentage between average and inverter production to trigger alert (0-1)
+local ALLOWED_PERCENT_DIFF = 0.03 -- Allowed percentage between average and inverter production to trigger alert (0-1)
 local MIN_WH = 400                -- Min average WhToday to check status
 local INVERTER_LIST = { 314, 315, 316, 317, 318, 319, 320, 321 }
 
