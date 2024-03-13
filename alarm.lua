@@ -6,6 +6,7 @@ local GW_DOORBELL_IDX = 28 -- index of the gateway doorbell
 local SECURITY_IDX = 79    -- index of the security device
 local GW_LIGHT_IDX = 25
 local SIREN_IDX = 352
+local GEOFENCE_SWITCH_IDX = 371 -- index of the switch used to enable/disable geofence
 
 local devices_armed_away = {
     BTN_IDX,
@@ -42,9 +43,9 @@ for k,v in pairs(devices_geofence) do all_devices[#all_devices+1] = v end
 
 local devices_trigger_time_sec = {
     ["default"] = 0,
-    [205] = 30, -- ZG porte entrée
-    [209] = 30, -- ZG motion entrée
-    [174] = 30, -- ZG motion bureau
+    [205] = 60, -- ZG porte entrée
+    [209] = 60, -- ZG motion entrée
+    [174] = 60, -- ZG motion bureau
     [146] = 60, -- ZG porte buanderie
     [144] = 60, -- ZG motion sous-sol
     [147] = 300 -- ZG porte garage
@@ -121,7 +122,15 @@ local function on_armed_home(domoticz)
 end
 
 local function on_geofence(domoticz, device)
-    domoticz.log("geofence=" ..  device.id .. ", state=" .. device.state, domoticz.LOG_DEBUG)
+    domoticz.log("change in geofence device idx=" ..  device.id .. ", state=" .. device.state, domoticz.LOG_DEBUG)
+    if domoticz.devices(GEOFENCE_SWITCH_IDX).state == "Off"
+    then
+        -- geofence disabled, nothing to do
+        domoticz.log("geofence switch state=" .. domoticz.devices(GEOFENCE_SWITCH_IDX).state .. ", nothing to do for geofence", domoticz.LOG_DEBUG)
+        return
+    end
+    domoticz.log("geofence switch state=" .. domoticz.devices(GEOFENCE_SWITCH_IDX).state .. ", handling geofence change", domoticz.LOG_DEBUG)
+
     if(device.state == "On")
     then
         if(domoticz.security == "Armed Away")
