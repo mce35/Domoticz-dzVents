@@ -155,7 +155,7 @@ return {
 
             ['245'] = TIMEOUT_SEC_DEFAULT, -- ZG - Router Ext
             ['248'] = TIMEOUT_SEC_ROUTER,  -- ZG - Router RDC
-            ['258'] = TIMEOUT_SEC_ROUTER,  -- ZG - Micromodule chauffe-eau
+            -- ['258'] = TIMEOUT_SEC_ROUTER,  -- ZG - Micromodule chauffe-eau
 
             -- ['302'] = TIMEOUT_SEC_ROUTER,  -- ZG - Switch1
             -- ['303'] = TIMEOUT_SEC_ROUTER,  -- ZG - Switch2
