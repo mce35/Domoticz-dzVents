@@ -8,6 +8,9 @@ local GW_LIGHT_IDX = 25
 local SIREN_IDX = 352
 local GEOFENCE_SWITCH_IDX = 371 -- index of the switch used to enable/disable geofence
 
+local FRONT_GATE_SWITCH_IDX = 297
+local FRONT_GATE_BTN_IDX = 351
+
 local devices_armed_away = {
     BTN_IDX,
     216, -- ZG porte bureau
@@ -40,6 +43,7 @@ local all_devices = {}
 for k,v in pairs(devices_armed_away) do all_devices[#all_devices+1] = v end
 for k,v in pairs(devices_armed_home) do all_devices[#all_devices+1] = v end
 for k,v in pairs(devices_geofence) do all_devices[#all_devices+1] = v end
+all_devices[#all_devices+1] = FRONT_GATE_SWITCH_IDX
 
 local devices_trigger_time_sec = {
     ["default"] = 0,
@@ -118,7 +122,15 @@ local function on_armed_home(domoticz)
     check_doors(domoticz)
     domoticz.devices(GW_LIGHT_IDX).setRGB(0, 0, 255)
     domoticz.variables("alarm_trigger").cancelQueuedCommands()
-    domoticz.data.state = 0;
+    domoticz.data.state = 0
+    if(domoticz.devices(FRONT_GATE_SWITCH_IDX).state == "Open")
+    then
+        domoticz.log("Armed home, but front door is opened, trying to close it", domoticz.LOG_DEBUG)
+        domoticz.devices(FRONT_GATE_BTN_IDX).switchOn()
+        domoticz.devices(FRONT_GATE_BTN_IDX).switchOn().afterSec(50)
+        domoticz.devices(FRONT_GATE_BTN_IDX).switchOn().afterSec(100)
+        domoticz.devices(FRONT_GATE_BTN_IDX).switchOn().afterSec(150)
+    end
 end
 
 local function on_geofence(domoticz, device)
@@ -184,6 +196,13 @@ return {
                     domoticz.devices(SECURITY_IDX).cancelQueuedCommands() -- security
                     domoticz.devices(SECURITY_IDX).armHome().silent()
                     on_armed_home(domoticz)
+                end
+            elseif(item.id == FRONT_GATE_SWITCH_IDX)
+            then
+                if(domoticz.security == "Armed Home")
+                then
+                    domoticz.log("Armed home, front door is closed", domoticz.LOG_DEBUG)
+                    domoticz.devices(FRONT_GATE_BTN_IDX).cancelQueuedCommands()
                 end
             elseif(has_value(devices_geofence, item.id))
             then
