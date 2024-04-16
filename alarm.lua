@@ -47,12 +47,12 @@ all_devices[#all_devices+1] = FRONT_GATE_SWITCH_IDX
 
 local devices_trigger_time_sec = {
     ["default"] = 0,
-    [205] = 60, -- ZG porte entrée
-    [209] = 60, -- ZG motion entrée
-    [174] = 60, -- ZG motion bureau
-    [146] = 60, -- ZG porte buanderie
-    [144] = 60, -- ZG motion sous-sol
-    [147] = 300 -- ZG porte garage
+    [205] = 120, -- ZG porte entrée
+    [209] = 120, -- ZG motion entrée
+    [174] = 120, -- ZG motion bureau
+    [146] = 120, -- ZG porte buanderie
+    [144] = 120, -- ZG motion sous-sol
+    [147] = 300  -- ZG porte garage
     }
 
 local function has_value(tab, val)
