@@ -3,8 +3,8 @@ local LOG_LEVEL = domoticz.LOG_INFO -- Can be domoticz.LOG_INFO, domoticz.LOG_MO
 local devices_rdc = {
     171,    -- ZG - °/% Bureau
     168,    -- ZG - °/% Salon
-    163,    -- ZG - °/%/B Cuisine
-    333     -- ZG - °/% Sonoff Frigo
+    163     -- ZG - °/%/B Cuisine
+    --333     -- ZG - °/% Sonoff Frigo
 }
 
 local devices_sous_sol = {
@@ -22,21 +22,11 @@ local devices_ext = {
     192,    -- ZG - ZG - °/% Extérieur
     345     -- ZG - °/% Extérieur arrière
 }
-local devices_all = {
-    171,    -- ZG - °/% Bureau
-    168,    -- ZG - °/% Salon
-    163,    -- ZG - °/%/B Cuisine
-    333,    -- ZG - °/% Sonoff Frigo
-    153,    -- ZG - °/% buanderie
-    179,    -- ZG - °/% Cave
-    148,    -- ZG - °/%/B sous-sol
-    198,    -- ZG - °/% Chambre Tim
-    195,    -- ZG - °/% Salle de jeu
-    176,    -- ZG - °/% Ch Noam/Mahé
-    339,    -- ZG - °/%/B Chambre parents
-    192,    -- ZG - ZG - °/% Extérieur
-    345     -- ZG - °/% Extérieur arrière
-}
+local devices_all = {}
+for k,v in pairs(devices_rdc) do devices_all[#devices_all+1] = v end
+for k,v in pairs(devices_sous_sol) do devices_all[#devices_all+1] = v end
+for k,v in pairs(devices_up) do devices_all[#devices_all+1] = v end
+for k,v in pairs(devices_ext) do devices_all[#devices_all+1] = v end
 
 function update_avg(domoticz, avg_dev_idx, devices)
     local avg_temp = 0
