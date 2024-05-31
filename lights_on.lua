@@ -73,13 +73,6 @@ return {
                     domoticz.devices(250).dimTo(100)
                     domoticz.devices(250).switchOff().afterSec(120)
                 end
-            elseif(item.id == 209) -- motion entrée
-            then
-                if(item.state == "On" and domoticz.devices(68 --[[ lux gateway ]]).lux < 900)
-                then
-                    domoticz.devices(25).dimTo(100)
-                    domoticz.devices(25).switchOff().afterSec(120)
-                end
             end
         end
     end
