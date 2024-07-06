@@ -31,11 +31,11 @@ return {
                 local diff_percent = (diff / mean_wh)*100
                 if(diff > diff_allowed)
                 then
-                    local msg = string.format("Inverter '%s' issue: Wh today=%d / Mean Wh today=%d / diff Wh=%d (%.2f%%)", device.name, device.WhToday, mean_wh, diff, diff_percent)
+                    local msg = string.format("Inverter '%s' issue: Wh today=%d / Mean Wh today=%.0f / diff Wh=%.0f (%.2f%%)", device.name, device.WhToday, mean_wh, diff, diff_percent)
                     domoticz.log(msg, domoticz.LOG_DEBUG)
                     domoticz.notify("Inverter '" .. device.name .. "' issue", msg, domoticz.PRIORITY_HIGH, nil, nil, nil)
                 else
-                    local msg = string.format("Inverter '%s' within range: Wh today=%d / Mean Wh today=%d / diff Wh=%d (%.2f%%)", device.name, device.WhToday, mean_wh, diff, diff_percent)
+                    local msg = string.format("Inverter '%s' within range: Wh today=%d / Mean Wh today=%.0f / diff Wh=%.0f (%.2f%%)", device.name, device.WhToday, mean_wh, diff, diff_percent)
                     domoticz.log(msg, domoticz.LOG_DEBUG)
                 end
             end

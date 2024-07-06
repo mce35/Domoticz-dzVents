@@ -170,7 +170,7 @@ return {
             ['287'] = TIMEOUT_SEC_DEFAULT, -- PZEM1
             ['274'] = TIMEOUT_SEC_DEFAULT, -- PZEM2
 
-            ['68']  = TIMEOUT_SEC_DEFAULT, -- Xiaomi Gateway Lux
+            -- ['68']  = TIMEOUT_SEC_DEFAULT, -- Xiaomi Gateway Lux
             ['17']  = TIMEOUT_SEC_WATER,   -- Water - 1 day
             ['363'] = TIMEOUT_SEC_SHORT,   -- Arduino analog input 0
             ['4']   = TIMEOUT_SEC_DEFAULT, -- Teleinfo Courant
@@ -188,6 +188,9 @@ return {
             ['319'] = TIMEOUT_SEC_DEFAULT, -- Inv 122134052139
             ['320'] = TIMEOUT_SEC_DEFAULT, -- Inv 122134052445
             ['321'] = TIMEOUT_SEC_DEFAULT, -- Inv 122134052356
+
+            ['467'] = TIMEOUT_SEC_SHORT, -- esp-mh-z19-1
+            ['473'] = TIMEOUT_SEC_SHORT, -- alarm box MH-Z19
         }
 
         local notified = domoticz.data.notified -- short reference
