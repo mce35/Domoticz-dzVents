@@ -8,7 +8,7 @@ return {
     on = { timer = { 'every 30 minutes' } },
     logging = { level = LOG_LEVEL, marker  = 'CheckInverters2' },
     data = { inverter_data = { initial = {} } },
-    execute = function(domoticz, timer)
+    execute = function(domoticz, item)
         domoticz.log("Checking inverter production", domoticz.LOG_INFO)
         local total_wh = 0
         local nb_inv = 0

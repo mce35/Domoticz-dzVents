@@ -57,6 +57,7 @@ local function build_notified_list(domoticz)
         if(device == nil)
         then
             msg = msg .. " - " .. key .. "(DEVICE NOT FOUND) (last update " .. human_time(lastUpdate) .. " ago / " .. value .. ")\\n\n"
+            domoticz.data.notified[key] = nil
         else
             msg = msg .. " - " .. device.name .. " (last update " .. human_time(lastUpdate) .. " ago / " .. value .. ")\\n\n"
         end
@@ -89,6 +90,20 @@ local function send_notification(domoticz, subject, msg, notified_msg)
     end
 end
 
+local function dump(o)
+    if type(o) == 'table' then
+       local s = '{ '
+       for k,v in pairs(o) do
+          if type(k) ~= 'number' then k = '"'..k..'"' end
+          s = s .. '['..k..'] = ' .. dump(v) .. ','
+       end
+       return s .. '} '
+    else
+       return tostring(o)
+    end
+ end
+ 
+
 return {
     on = { timer =  { 'every 15 minutes' }, httpResponses = { HTTPCallback } },
     logging = { level = LOG_LEVEL, marker  = 'CheckLastSeen' },
@@ -110,7 +125,6 @@ return {
             ['148'] = TIMEOUT_SEC_TEMP,    -- ZG - °/%/B sous-sol
             ['163'] = TIMEOUT_SEC_TEMP,    -- ZG - °/%/B Cuisine
             ['255'] = TIMEOUT_SEC_TEMP,    -- ZG - °/% Frigo
-            ['299'] = TIMEOUT_SEC_TEMP,    -- ZG - °/% Display
             ['333'] = TIMEOUT_SEC_TEMP,    -- ZG - °/% Sonoff 1
             ['336'] = TIMEOUT_SEC_TEMP,    -- ZG - °/% Sonoff 2
             ['339'] = TIMEOUT_SEC_TEMP,    -- ZG - °/%/B Chambre parents
@@ -164,8 +178,8 @@ return {
 
             ['182'] = TIMEOUT_SEC_DEFAULT, -- PM2.5 sensor
             ['190'] = TIMEOUT_SEC_DEFAULT, -- PM10
-            ['232'] = TIMEOUT_SEC_DEFAULT, -- PM2.5 sensor indoor
-            ['233'] = TIMEOUT_SEC_DEFAULT, -- PM10 sensor indoor
+            ['547'] = TIMEOUT_SEC_DEFAULT, -- PM2.5 sensor indoor
+            ['548'] = TIMEOUT_SEC_DEFAULT, -- PM10 sensor indoor
 
             ['287'] = TIMEOUT_SEC_DEFAULT, -- PZEM1
             ['274'] = TIMEOUT_SEC_DEFAULT, -- PZEM2
@@ -207,7 +221,7 @@ return {
             end
 
             domoticz.openURL({ 
-                url = domoticz.settings['Domoticz url'] .. '/json.htm?type=devices&used=true',
+                url = domoticz.settings['Domoticz url'] .. '/json.htm?type=command&param=getdevices&used=true',
                 callback = HTTPCallback })
         else
             local back_devices_msg = ""
@@ -215,6 +229,21 @@ return {
             local lost_devices_subject = "Signal lost for | "
             local back_devices_subject = "Signal back for | "
             local to_be_notified = {}
+
+            -- domoticz.log("HTTP response '" .. dump(item), domoticz.LOG_DEBUG)
+
+            if(not item.ok)
+            then
+                domoticz.log("HTTP request failed, status code=" .. item.statusCode, domoticz.LOG_ERROR)
+                domoticz.email("Check alive failed", "HTTP request failed, status code=" .. item.statusCode, domoticz.variables("user_email").value)
+                return
+            end
+            if(not item.isJSON)
+            then
+                domoticz.log("HTTP request failed, didn't return a JSON object " .. dump(item), domoticz.LOG_ERROR)
+                domoticz.email("Check alive failed", "HTTP request failed, didn't return a JSON object " .. dump(item), domoticz.variables("user_email").value)
+                return
+            end
 
             for _, node in pairs(item.json.result)
             do
