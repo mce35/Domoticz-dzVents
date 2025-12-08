@@ -19,8 +19,7 @@ local devices_up = {
     339     -- ZG - °/%/B Chambre parents
 }
 local devices_ext = {
-    192,    -- ZG - ZG - °/% Extérieur
-    345     -- ZG - °/% Extérieur arrière
+    192     -- ZG - ZG - °/% Extérieur
 }
 local devices_all = {}
 for k,v in pairs(devices_rdc) do devices_all[#devices_all+1] = v end
