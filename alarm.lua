@@ -1,13 +1,13 @@
 local LOG_LEVEL = domoticz.LOG_DEBUG -- Can be domoticz.LOG_INFO, domoticz.LOG_MODULE_EXEC_INFO, domoticz.LOG_DEBUG or domoticz.LOG_ERROR
 local BTN_IDX = 156        -- ZG button
-local GW_ALARM_IDX = 470   -- index of the gateway alarm ringtone
-local GW_VOLUME_IDX = 471  -- index of the gateway volume
+local GW_ALARM_IDX = 766   -- index of the gateway alarm ringtone
+local GW_VOLUME_IDX = 767  -- index of the gateway volume
 local GW_WARNING_TONE_LEVEL = 10
 local GW_ALARM_TONE_LEVEL = 20
 local SECURITY_IDX = 79    -- index of the security device
-local GW_LIGHT_IDX = 469
+local GW_LIGHT_IDX = 765
 local GW_LIGHT_DIM_LEVEL = 80
-local GW_WIEGAND_IDX = 475   -- index of the gateway wiegand tag reader (text sensor)
+local GW_WIEGAND_IDX = 776   -- index of the gateway wiegand tag reader (text sensor)
 local SIREN_IDX = 352
 local GEOFENCE_SWITCH_IDX = 371 -- index of the switch used to enable/disable geofence
 
@@ -159,6 +159,9 @@ local function on_tag(domoticz, device)
             domoticz.devices(SECURITY_IDX).armHome().silent()
             on_armed_home(domoticz)
         end
+    else
+            domoticz.log("Tag '" .. device.text .."' not allowed", domoticz.LOG_DEBUG)
+
     end
 end
 
