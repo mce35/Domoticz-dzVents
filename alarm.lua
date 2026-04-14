@@ -11,7 +11,7 @@ local GW_WIEGAND_IDX = 776   -- index of the gateway wiegand tag reader (text se
 local SIREN_IDX = 352
 local GEOFENCE_SWITCH_IDX = 371 -- index of the switch used to enable/disable geofence
 
-local FRONT_GATE_SWITCH_IDX = 297
+local FRONT_GATE_SWITCH_IDX = 1078
 local FRONT_GATE_BTN_IDX = 351
 
 local devices_armed_away = {
@@ -26,7 +26,8 @@ local devices_armed_away = {
     147, -- ZG porte garage
     209, -- ZG motion entrée
     144, -- ZG motion sous-sol
-    174  -- ZG motion bureau
+    174, -- ZG motion bureau
+    1030 -- ZG motion radar
     }
 local devices_armed_home = {
     216, -- ZG porte bureau
@@ -58,6 +59,7 @@ local devices_trigger_time_sec = {
     [205] = 120, -- ZG porte entrée
     [209] = 120, -- ZG motion entrée
     [174] = 120, -- ZG motion bureau
+    [1030] = 120,-- ZG motion radar
     [146] = 120, -- ZG porte buanderie
     [144] = 120, -- ZG motion sous-sol
     [147] = 300  -- ZG porte garage

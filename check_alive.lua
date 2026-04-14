@@ -146,13 +146,15 @@ return {
 
             ['144'] = TIMEOUT_SEC_DEFAULT, -- ZG - Motion cave
             ['174'] = TIMEOUT_SEC_DEFAULT, -- ZG - Motion bureau
+            ['1030'] = TIMEOUT_SEC_DEFAULT,-- ZG - Motion radar
             ['209'] = TIMEOUT_SEC_DEFAULT, -- ZG - Motion entrée
 
             ['215'] = TIMEOUT_SEC_CONTACT, -- ZG - Chatière
             ['210'] = TIMEOUT_SEC_CONTACT, -- ZG - Boîte à lettre
             ['244'] = TIMEOUT_SEC_CONTACT, -- ZG - Rain sensor
-            ['297'] = TIMEOUT_SEC_LONG,    -- ZG - Portail
+            ['1078'] = TIMEOUT_SEC_LONG,   -- ZG - Portail
             ['175'] = TIMEOUT_SEC_DEFAULT, -- ZG - Lux bureau
+            ['1034'] = TIMEOUT_SEC_DEFAULT,-- ZG - Lux radar
             ['156'] = TIMEOUT_SEC_DEFAULT, -- ZG - btn cuisine
             ['145'] = TIMEOUT_SEC_DEFAULT, -- ZG - btn bureau
             ['323'] = TIMEOUT_SEC_DEFAULT, -- ZG - Hue remote

@@ -5,7 +5,7 @@ local MIN_WH = 550                -- Min average WhToday to check status
 local INVERTER_LIST = { 314, 315, 316, 317, 318, 319, 320, 321 }
 
 return {
-    on = { timer = { 'every 30 minutes' } },
+    on = { timer = { 'at 22:15' } },
     logging = { level = LOG_LEVEL, marker  = 'CheckInverters2' },
     data = { inverter_data = { initial = {} } },
     execute = function(domoticz, item)

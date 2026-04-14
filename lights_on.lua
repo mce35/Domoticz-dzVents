@@ -6,6 +6,7 @@ local BTN_IDX = 145
 return {
     on = { devices = { 209 --[[ ZG motion entrée ]],
                        174 --[[ ZG motion bureau ]],
+                       1030--[[ ZG motion radar ]],
                        144 --[[ ZG motion cave ]],
                        BTN_IDX --[[ ZG btn bureau ]],
                        323 --[[ ZG Hue remote ]] } },
@@ -44,18 +45,18 @@ return {
                     domoticz.devices(LIGHT_IDX).switchOn()
                     domoticz.devices(LIGHT_IDX).dimTo(75)
                 end
-            elseif(item.id == 174) -- motion bureau
+            elseif(item.id == 174 or item.id == 1030) -- motion bureau / motion radar
             then
                 if(item.state == "On")
                 then
                     domoticz.devices(332).cancelQueuedCommands()
-                    if(domoticz.devices(175 --[[ ZG lux bureau ]]).lux < 100)
+                    if(domoticz.devices(1034 --[[ ZG - Lux radar ]]).lux < 100)
                     then
-                        domoticz.log("Switch on light bureau (Lux: " .. domoticz.devices(175 --[[ ZG lux bureau ]]).lux .. ")", domoticz.LOG_INFO)
+                        domoticz.log("Switch on light bureau (Lux: " .. domoticz.devices(1034 --[[ ZG - Lux radar ]]).lux .. ")", domoticz.LOG_INFO)
                         domoticz.devices(332).switchOn()
                         domoticz.devices(332).dimTo(100)
                     else
-                        domoticz.log("Do not switch on light bureau (Lux: " .. domoticz.devices(175 --[[ ZG lux bureau ]]).lux .. " / state " .. item.state .. ")", domoticz.LOG_INFO)
+                        domoticz.log("Do not switch on light bureau (Lux: " .. domoticz.devices(1034 --[[ ZG - Lux radar ]]).lux .. " / state " .. item.state .. ")", domoticz.LOG_INFO)
                     end
                     domoticz.devices(332).switchOff().afterSec(300)
                 end
