@@ -4,7 +4,7 @@ Script that check that the door does not stay open for more than XX seconds
 
 local LOG_LEVEL = domoticz.LOG_INFO -- Can be domoticz.LOG_INFO, domoticz.LOG_MODULE_EXEC_INFO, domoticz.LOG_DEBUG or domoticz.LOG_ERROR
 local MAX_OPEN_TIME = 30  -- time after which an alarm is triggered
-local GW_ALARM_IDX = 766  -- index of the gateway alarm ringtone
+local GW_ALARM_IDX = 1204 -- index of the gateway alarm ringtone
 local GW_VOLUME_IDX = 767 -- index of the gateway volume
 local GW_WARNING2_TONE_LEVEL = 30
 

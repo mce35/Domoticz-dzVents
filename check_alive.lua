@@ -163,7 +163,7 @@ return {
             ['242'] = TIMEOUT_SEC_LONG,    -- ZG - Heiman Smoke detector
             ['322'] = TIMEOUT_SEC_LONG,    -- ZG - Heiman Smoke detector 2
 
-            ['238'] = TIMEOUT_SEC_ROUTER,  -- ZG - Light cuisine
+            -- ['238'] = TIMEOUT_SEC_ROUTER,  -- ZG - Light cuisine
             -- ['247'] = TIMEOUT_SEC_ROUTER,  -- ZG - Light bureau old
             ['249'] = TIMEOUT_SEC_ROUTER,  -- ZG - Light cave 1
             ['250'] = TIMEOUT_SEC_ROUTER,  -- ZG - Light cave 2

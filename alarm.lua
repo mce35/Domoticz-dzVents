@@ -1,6 +1,6 @@
 local LOG_LEVEL = domoticz.LOG_DEBUG -- Can be domoticz.LOG_INFO, domoticz.LOG_MODULE_EXEC_INFO, domoticz.LOG_DEBUG or domoticz.LOG_ERROR
 local BTN_IDX = 156        -- ZG button
-local GW_ALARM_IDX = 766   -- index of the gateway alarm ringtone
+local GW_ALARM_IDX = 1204  -- index of the gateway alarm ringtone
 local GW_VOLUME_IDX = 767  -- index of the gateway volume
 local GW_WARNING_TONE_LEVEL = 10
 local GW_ALARM_TONE_LEVEL = 20
